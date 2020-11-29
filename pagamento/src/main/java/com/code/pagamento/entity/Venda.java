@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.code.pagamento.vo.VendaVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,10 +37,14 @@ public class Venda {
 	@Column(name = "data", nullable = false)
 	private Date data;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vwnda", cascade = CascadeType.REFRESH)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda", cascade = CascadeType.REFRESH)
 	private List<ProdutoVenda> produtos;
 	
 	@Column(name = "valor_total", nullable = false, length = 10)
 	private Double valorTotal;
+	
+	public static Venda create(VendaVO vendaVO) {
+		return new ModelMapper().map(vendaVO, Venda.class);
+	}
 
 }

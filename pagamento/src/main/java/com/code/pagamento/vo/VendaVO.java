@@ -6,7 +6,6 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
 
-import com.code.pagamento.entity.ProdutoVenda;
 import com.code.pagamento.entity.Venda;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +21,7 @@ public class VendaVO extends RepresentationModel<VendaVO> {
 
 	private Long id;
 	private Date data;
-	private List<ProdutoVenda> produtos;
+	private List<ProdutoVendaVO> produtos;
 	private Double valorTotal;
 
 	public static VendaVO create(Venda venda) {

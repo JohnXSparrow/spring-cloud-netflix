@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.code.crud.entity.Produto;
 import com.code.crud.exception.ResourceNotFoundException;
+import com.code.crud.message.ProdutoSendMessage;
 import com.code.crud.repository.ProdutoRepository;
 import com.code.crud.vo.ProdutoVO;
 
@@ -14,14 +15,18 @@ import com.code.crud.vo.ProdutoVO;
 public class ProdutoService {
 
 	private final ProdutoRepository produtoRepository;
+	private final ProdutoSendMessage produtoSendMessage;
 
 	@Autowired
-	public ProdutoService(ProdutoRepository produtoRepository) {
+	public ProdutoService(ProdutoRepository produtoRepository, ProdutoSendMessage produtoSendMessage) {
 		this.produtoRepository = produtoRepository;
+		this.produtoSendMessage = produtoSendMessage;
 	}
 
 	public ProdutoVO save(ProdutoVO produtoVO) {
-		return ProdutoVO.create(produtoRepository.save(Produto.create(produtoVO)));
+		ProdutoVO produtoVOSaved = ProdutoVO.create(produtoRepository.save(Produto.create(produtoVO)));
+		produtoSendMessage.sendMessage(produtoVOSaved);
+		return produtoVO;
 	}
 
 	public Page<ProdutoVO> findAll(Pageable pageable) {

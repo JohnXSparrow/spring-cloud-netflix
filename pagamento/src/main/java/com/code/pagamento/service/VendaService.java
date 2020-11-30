@@ -3,6 +3,7 @@ package com.code.pagamento.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,13 +21,13 @@ public class VendaService {
 	private VendaRepository vendaRepository;
 	private ProdutoVendaRepository produtoVendaRepository;
 
+	@Autowired
 	public VendaService(VendaRepository vendaRepository, ProdutoVendaRepository produtoVendaRepository) {
 		this.vendaRepository = vendaRepository;
 		this.produtoVendaRepository = produtoVendaRepository;
 	}
 	
 	public VendaVO save(VendaVO vendaVO) {
-		
 		Venda venda = vendaRepository.save(Venda.create(vendaVO));		
 		List<ProdutoVenda> produtosSalvo = new ArrayList<ProdutoVenda>();
 		

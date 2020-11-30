@@ -35,7 +35,7 @@ crud:
 security:
   jwt:
     token: 
-      secret-key: chave_microservices
+      secret-key: secret
       
 eureka:
   instance: 

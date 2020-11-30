@@ -26,7 +26,7 @@ public class ProdutoService {
 	public ProdutoVO save(ProdutoVO produtoVO) {
 		ProdutoVO produtoVOSaved = ProdutoVO.create(produtoRepository.save(Produto.create(produtoVO)));
 		produtoSendMessage.sendMessage(produtoVOSaved);
-		return produtoVO;
+		return produtoVOSaved;
 	}
 
 	public Page<ProdutoVO> findAll(Pageable pageable) {

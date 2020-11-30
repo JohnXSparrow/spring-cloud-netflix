@@ -27,12 +27,19 @@ spring:
     username: admin
     password: admin
     
+crud:
+  rabbitmq:
+    exchange: crud.exchange
+    queue: crud.produto.queue
+    
 security:
   jwt:
     token: 
       secret-key: secret
     
-crud:
-  rabbitmq:
-    exchange: crud.exchange
-    queue: crud.produto.queue
+eureka:
+  instance: 
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

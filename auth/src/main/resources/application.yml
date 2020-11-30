@@ -26,3 +26,11 @@ security:
     token: 
       secret-key: secret
       expire-time: 360000
+      
+eureka:
+  instance: 
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+      
